@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>点名 dianming — live roll call</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9D%3C/text%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <h1>点名 <span class="subtitle">dianming — live roll call</span></h1>
+        <div class="controls">
+          <button id="camera-toggle" type="button">Start camera</button>
+          <label class="upload-btn">
+            Preload roster photo
+            <input id="roster-upload" type="file" accept="image/*" multiple hidden />
+          </label>
+          <button id="clear-data" type="button" class="danger">Clear learned data</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="stage">
+          <div class="video-wrap">
+            <video id="video" autoplay muted playsinline></video>
+            <canvas id="overlay"></canvas>
+          </div>
+          <p id="status" class="status">Loading models…</p>
+        </section>
+
+        <aside class="sidebar">
+          <div class="counts">
+            <div class="count-tile">
+              <span class="count-value" id="count-live">0</span>
+              <span class="count-label">faces in frame</span>
+            </div>
+            <div class="count-tile">
+              <span class="count-value" id="count-known">0</span>
+              <span class="count-label">known in roster</span>
+            </div>
+            <div class="count-tile">
+              <span class="count-value" id="count-session">0</span>
+              <span class="count-label">seen this session</span>
+            </div>
+          </div>
+
+          <div class="panel" id="unknown-panel">
+            <h2>Unrecognized faces</h2>
+            <p class="hint">Give a name so the app remembers them next time.</p>
+            <div id="unknown-list" class="unknown-list"></div>
+          </div>
+
+          <div class="panel" id="roster-panel">
+            <h2>Roster</h2>
+            <div id="roster-list" class="roster-list"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
